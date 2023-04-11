@@ -3,20 +3,25 @@ import React from "react";
 
 
 function FeatPlanet(props) {
-
-  let fp = props.featProj2;
-
-  return (
-    <div className="FeatPlanet">
-      <img src={fp.image} alt={fp.title} />
-
-      <div>
-        <h2>{fp.title}</h2>
-        <p>{fp.description}</p>
+    let fp = props.featPlanet;
+  
+    if (!fp) {
+      return <div>Click on a planet to show its information</div>;
+    }
+  
+    return (
+      <div className="FeatPlanet">
+        <div>
+          <h2>{fp.name}</h2>
+          <p>Diameter: {fp.diameter} km</p>
+          <p>Climate: {fp.climate}</p>
+          <p>Terrain: {fp.terrain}</p>
+          <p>Population: {fp.population}</p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+  
 
 
 export default FeatPlanet;
