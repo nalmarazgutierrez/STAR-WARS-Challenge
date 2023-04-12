@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import StarWarsContext from './StarWarsContext';
 
-function PlanetList(props) {
+function PlanetList() {
+
+const {planets, setPlanets, showPlanet} = useContext(StarWarsContext);
 
   return (
     <div className="PlanetList">
       {
-        props.planets.map(p => (
+        planets.map(p => (
          <div key={p.url}>
-         <a onClick={() => props.showPlanet(p.url)}>{p.name}</a>
+          <h2>{p.name}</h2>
+          <p>Diameter: {p.diameter} km</p>
+          <p>Climate: {p.climate}</p>
+          <p>Terrain: {p.terrain}</p>
+          <p>Population: {p.population}</p>
+         <a onClick={() => showPlanet(p.url)}>READ MORE</a>
          </div>
         ))
       }

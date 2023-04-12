@@ -18,7 +18,7 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql = "DROP TABLE if exists planets; CREATE TABLE planets(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
+  let sql = "DROP TABLE if exists planets; CREATE TABLE planets(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `planets` was successful!");
