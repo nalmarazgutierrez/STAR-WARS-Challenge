@@ -20,6 +20,7 @@ function App() {
     getPlanets('https://swapi.dev/api/planets/');
   }, []);
 
+  
   async function getPlanets(url) {
     const response = await fetch(url);
     const data = await response.json();
@@ -36,24 +37,24 @@ function App() {
   }
 
   async function addPlanet(planet) {
-    try {
-      const response = await fetch('/api/planets', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(planet)
-      });
-      console.log(response);
-      if (response.ok) {
-        const plan = await response.json();
-        return plan;
-      } else {
-        console.log(`Server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`Server error: ${err.message}`);
-    }
+  //   try {
+  //     const response = await fetch('/api/planets', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(planet)
+  //     });
+  //     console.log(response);
+  //     if (response.ok) {
+  //       const plan = await response.json();
+  //       return plan;
+  //     } else {
+  //       console.log(`Server error: ${response.status} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`Server error: ${err.message}`);
+  //   }
   }
   
 

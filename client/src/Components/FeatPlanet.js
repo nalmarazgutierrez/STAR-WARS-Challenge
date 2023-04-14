@@ -29,7 +29,7 @@ function FeatPlanet() {
   }, [featPlanet]);
 
   if (!featPlanet) {
-    return <div>Click on a planet to show more information</div>;
+    return <div></div>;
   }
 
   return (
