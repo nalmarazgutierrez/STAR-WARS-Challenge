@@ -3,40 +3,56 @@ import React, { useState, useEffect } from "react";
 import PlanetList from './Components/PlanetList';
 import FeatPlanet from './Components/FeatPlanet';
 import StarWarsContext from './Components/StarWarsContext';
-
-const EMPTY_PLANET = {
-  name: ''
-};
+import AddPlanetForm from './Components/AddPlanetForm';
 
 function App() {
   
   const [planets, setPlanets] = useState([]);
   const [featPlanet, setFeatPlanet] = useState(planets[0]);
-  const [newPlanet, setNewPlanet] = useState(EMPTY_PLANET);
 
-  let starWarsObject = {planets, setPlanets, showPlanet, featPlanet, newPlanet, setNewPlanet, addPlanet}
-
-  useEffect(() => {
-    getPlanets('https://swapi.dev/api/planets/');
+  let starWarsObject = {planets, setPlanets, showPlanet, featPlanet}
+ 
+   useEffect(() => {
+    getPlanets();
   }, []);
 
-  
-  async function getPlanets(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    const newPlanets = data.results;
-    setPlanets(prevPlanets => [...prevPlanets, ...newPlanets]);
-    if (data.next) {
-      getPlanets(data.next);
+  async function getPlanets() {
+    const url = "https://swapi.dev/api/planets/";
+    
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setPlanets(data.results);
+    } catch (error) {
+      console.log(error);
     }
   }
+
+  //Fetch ALL planets (60 in total), not only 10
+  // async function getPlanets() {
+  //   const url = "https://swapi.dev/api/planets/";
+  //   let allPlanets = [];
+  
+  //   try {
+  //     let next = url;
+  //     while (next !== null) {
+  //       const response = await fetch(next);
+  //       const data = await response.json();
+  //       allPlanets = allPlanets.concat(data.results);
+  //       next = data.next;
+  //     }
+  //     setPlanets(allPlanets);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   function showPlanet(url) {
     let featPlanet = planets.find(p => p.url === url);
     setFeatPlanet(featPlanet);
   }
 
-  async function addPlanet(planet) {
+  // async function addPlanet(planet) {
   //   try {
   //     const response = await fetch('/api/planets', {
   //       method: 'POST',
@@ -55,14 +71,14 @@ function App() {
   //   } catch (err) {
   //     console.log(`Server error: ${err.message}`);
   //   }
-  }
+  // }
   
-
   return (
     <div className="App">
       <h1>STAR WARS PLANETS</h1>
 
       <StarWarsContext.Provider value={starWarsObject}>
+        <AddPlanetForm />
         <FeatPlanet />
         <PlanetList />
       </StarWarsContext.Provider>
