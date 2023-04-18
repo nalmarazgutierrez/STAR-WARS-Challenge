@@ -12,4 +12,4 @@
 
 ### Notes
 
-- If you want to fecth more planets to manage, comment the current getPlanets() function, and uncomment de following (also called getPlanets).
+- If you want to fecth more planets to manage, comment out the current getPlanets() function, and uncomment de following (also called getPlanets). The API has limited requests, so the second getPlanets function can exhaust all the requests. 
