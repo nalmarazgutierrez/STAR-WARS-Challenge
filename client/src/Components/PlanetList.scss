@@ -35,6 +35,18 @@
             input {
                 margin-top: 10px;
             } 
+
+            @include tablet {
+                // grid-template-columns: repeat(2, 1fr);
+        
+                // .span-2-cols {
+                //     grid-column: 1 / span 2;
+                // }
+            }
+        
+            @include laptop {
+                // gap: $lg-space;
+            }
         }
     }
 
