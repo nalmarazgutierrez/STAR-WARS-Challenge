@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import StarWarsContext from "./StarWarsContext";
+import "./AddPlanetForm.scss";
 
 const EMPTY_PLANET = {
   name: "",
@@ -10,13 +11,17 @@ const EMPTY_PLANET = {
 };
 
 function AddPlanetForm() {
-  const { planets, setPlanets } = useContext(StarWarsContext);
+  const { planets, setPlanets, setFormSubmitted, setShowForm} = useContext(StarWarsContext);
   const [newPlanet, setNewPlanet] = useState(EMPTY_PLANET);
 
   function addPlanet(e) {
     e.preventDefault();
     setPlanets((prevState) => [...prevState, newPlanet]);
+    setFormSubmitted(true);
     setNewPlanet(EMPTY_PLANET);
+    setShowForm(false);
+    setFormSubmitted(false);
+    
   }
 
   function handleChange(event) {
@@ -28,9 +33,9 @@ function AddPlanetForm() {
   }
 
   return (
-    <div>
+    <div className="AddPlanetForm card">
       <form onSubmit={addPlanet}>
-        <h2>Add a new planet</h2>
+      <h3>Add a New Planet</h3>
         <label>
           Name:
           <input
@@ -74,14 +79,14 @@ function AddPlanetForm() {
         <label>
           Population:
           <input
-            type="text"
+            type="number"
             name="population"
             value={newPlanet.population}
             onChange={handleChange}
           />
         </label>
         <br />
-        <button type="submit">Add planet</button>
+        <button type="submit">ADD PLANET</button>
       </form>
     </div>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import StarWarsContext from "./StarWarsContext";
+import "./FeatPlanet.scss";
 
 function FeatPlanet() {
-  const { featPlanet } = useContext(StarWarsContext);
+  const {featPlanet, editPlanet, setEditPlanet } = useContext(StarWarsContext);
   const [residents, setResidents] = useState([]);
 
   useEffect(() => {
@@ -33,18 +34,20 @@ function FeatPlanet() {
   }
 
   return (
-    <div className="FeatPlanet">
-      <div>
-        <h2>{featPlanet.name}</h2>
-        <p>Diameter: {featPlanet.diameter} km</p>
-        <p>Climate: {featPlanet.climate}</p>
-        <p>Terrain: {featPlanet.terrain}</p>
-        <p>Population: {featPlanet.population}</p>
-        Residents:
+    <div key={featPlanet.url} className="FeatPlanet card">
+        <div className="featDiv">
+          <h3>{featPlanet.name}</h3>
+        <p><b>Diameter:</b> {featPlanet.diameter} km</p>
+        <p><b>Climate:</b> {featPlanet.climate}</p>
+        <p><b>Terrain:</b> {featPlanet.terrain}</p>
+        <p><b>Population:</b> {featPlanet.population}</p>
+        </div>
+        <div className="featDiv">
+        <h3>Residents:</h3>
         {residents.map((r, index) => (
           <p key={index}>{r}</p>
         ))}
-      </div>
+        </div>
     </div>
   );
 }

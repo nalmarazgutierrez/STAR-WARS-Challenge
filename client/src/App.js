@@ -1,7 +1,7 @@
-import './App.css';
+import './App.scss';
 import React, { useState, useEffect } from "react";
+import { Routes, Route, Link} from 'react-router-dom'; 
 import PlanetList from './Components/PlanetList';
-import FeatPlanet from './Components/FeatPlanet';
 import StarWarsContext from './Components/StarWarsContext';
 import AddPlanetForm from './Components/AddPlanetForm';
 
@@ -9,8 +9,11 @@ function App() {
   
   const [planets, setPlanets] = useState([]);
   const [featPlanet, setFeatPlanet] = useState(planets[0]);
+  const [showForm, setShowForm] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [editPlanet, setEditPlanet] = useState(null);
 
-  let starWarsObject = {planets, setPlanets, showPlanet, featPlanet}
+  let starWarsObject = {planets, setPlanets, showPlanet, featPlanet, setShowForm, setFormSubmitted, editPlanet, setEditPlanet}
  
    useEffect(() => {
     getPlanets();
@@ -52,14 +55,33 @@ function App() {
     setFeatPlanet(featPlanet);
   }
 
+  const handleButtonClick = () => {
+    setShowForm(true);
+  }
+
+  // const handleFormReset = () => {
+  //   setShowForm(false);
+  //   setFormSubmitted(false);
+  // };
+
   return (
     <div className="App">
-      <h1>STAR WARS PLANETS</h1>
+      <div className="header">
+        <div>
+        <h1><a href="/">STAR WARS Manager</a></h1>
+        <button className="HeaderButton"onClick={handleButtonClick}>+ NEW PLANET</button>
+        </div>
+      </div>
+
+        
 
       <StarWarsContext.Provider value={starWarsObject}>
-        <AddPlanetForm />
-        <FeatPlanet />
-        <PlanetList />
+
+         {showForm && !formSubmitted && (
+          <AddPlanetForm />
+         )}
+         <PlanetList />
+        
       </StarWarsContext.Provider>
     </div>
   );

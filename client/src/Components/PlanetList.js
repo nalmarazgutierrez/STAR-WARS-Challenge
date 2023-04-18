@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import StarWarsContext from './StarWarsContext';
 import SortBy from './SortBy';
+import "./PlanetList.scss";
+import FeatPlanet from './FeatPlanet';
 
 function PlanetList() {
-  const { planets, setPlanets, showPlanet } = useContext(StarWarsContext);
-  const [editPlanet, setEditPlanet] = useState(null);
+  const { planets, setPlanets, showPlanet, editPlanet, setEditPlanet} = useContext(StarWarsContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortKey, setSortKey] = useState(null);
   const [sortAsc, setSortAsc] = useState(true);
@@ -82,231 +83,95 @@ function PlanetList() {
   };
 
   return (
-    <div className="PlanetList">
-      <form onSubmit={(e) => e.preventDefault()}>
+    <div className='PlanetList'>
+      <div id="NavSection">
+         <FeatPlanet />
+         </div>
+      <div className="Panel p-5">
+        <form onSubmit={(e) => e.preventDefault()}>    
         <label>
-          Search:
+          Search by name, climate, or terrain : 
           <input
+            className='form-control'
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </label>
       </form>
-      <SortBy onSort={handleSort} />
+      <SortBy />
+      </div>
+      
+      <div className="PlanetGrid">
+      
       {sortResults(searchResults).map(planet => (
         <div key={planet.url}>
           {editPlanet === planet ? (
-            <form onSubmit={handleSave}>
+            <div className="PlanetDiv p-2">
+            <form className="form-inline" onSubmit={handleSave}>
+              <div className="form-group mt-2">
             <label>
             Name:
-            <input type="text" defaultValue={planet.name} name="name" />
+            <input className="form-control" type="text" defaultValue={planet.name} name="name" />
             </label>
+            </div>
+            <div className="form-group">
             <label>
             Diameter:
-            <input type="number" defaultValue={planet.diameter} name="diameter" />
+            <input className="form-control" type="number" defaultValue={planet.diameter} name="diameter" />
             </label>
+            </div>
+            <div className="form-group">
             <label>
             Climate:
-            <input type="text" defaultValue={planet.climate} name="climate" />
+            <input className="form-control" type="text" defaultValue={planet.climate} name="climate" />
             </label>
+            </div>
+            <div className="form-group">
             <label>
             Terrain:
-            <input type="text" defaultValue={planet.terrain} name="terrain" />
+            <input className="form-control" type="text" defaultValue={planet.terrain} name="terrain" />
             </label>
+            </div>
+            <div className="form-group mb-3">
             <label>
             Population:
-            <input type="number" defaultValue={planet.population} name="population" />
+            <input className="form-control" type="number" defaultValue={planet.population} name="population" />
             </label>
+            </div>
             <button type="submit">Save</button>
             <button onClick={() => setEditPlanet(null)}>Cancel</button>
             </form>
-            ) : (
-            <div onClick={() => showPlanet(planet)}>
-            <h2>{planet.name}</h2>
-            <p>Diameter: {planet.diameter}</p>
-            <p>Climate: {planet.climate}</p>
-            <p>Terrain: {planet.terrain}</p>
-            <p>Population: {planet.population}</p>
-            <button onClick={() => handleEdit(planet)}>Edit</button>
-            <button onClick={() => handleDelete(planet.url)}>Delete</button>
             </div>
+            ) : (
+            
+              <div className="PlanetDiv">
+                <div className="DeleteDiv">
+                <button id="Delete" onClick={() => handleDelete(planet.url)}> X </button>
+                </div>
+              <div className="PlanetDiv card p-4" key={planet.url}>
+            <h3>{planet.name}</h3>
+            <div className="textPlanet">
+              <p><b>Diameter:</b> {planet.diameter}</p>
+              <p><b>Climate:</b> {planet.climate}</p>
+              <p><b>Terrain:</b> {planet.terrain}</p>
+              <p><b>Population:</b> {planet.population}</p>
+            </div>
+            <div className="TwoButtons">
+            <button onClick={() => handleEdit(planet)}>EDIT</button>
+            <button><a href="#NavSection" onClick={() => showPlanet(planet.url)}>+ INFO</a></button>
+            </div>
+            
+            </div>
+            </div>
+            
             )}
             </div>
+            
             ))}
+            </div>
             </div>
             );
             }
             
             export default PlanetList;
-            
-            
-            
-            
-            
-
-
-
-
-// import React, { useContext, useState} from 'react';
-// import StarWarsContext from './StarWarsContext';
-// import SortBy from './SortBy';
-
-// function PlanetList() {
-
-// const {planets, setPlanets, showPlanet} = useContext(StarWarsContext);
-// const [editPlanet, setEditPlanet] = useState(null);
-
-// const handleDelete = (url) => {
-//     const newPlanets = planets.filter(p => p.url !== url);
-//     setPlanets(newPlanets);
-//   };
-
-//   const handleEdit = (planet) => {
-//     setEditPlanet(planet);
-//   };
-
-//   const handleSave = (event) => {
-//     event.preventDefault();
-//     const updatedPlanet = {
-//       ...editPlanet,
-//       name: event.target.name.value,
-//       climate: event.target.climate.value,
-//       terrain: event.target.terrain.value
-//     };
-//     const updatedPlanets = planets.map(p => p.url === updatedPlanet.url ? updatedPlanet : p);
-//     setPlanets(updatedPlanets);
-//     setEditPlanet(null);
-//   };
-
-//   return (
-//     <div className="PlanetList">
-//       <SortBy />
-//       {planets.map(planet => (
-//         <div key={planet.url}>
-//           {editPlanet === planet ? (
-//             <form onSubmit={handleSave}>
-//               <input type="text" name="name" defaultValue={planet.name} />
-//               <input type="text" name="diameter" defaultValue={planet.diameter} />
-//               <input type="text" name="climate" defaultValue={planet.climate} />
-//               <input type="text" name="terrain" defaultValue={planet.terrain} />
-//               <input type="text" name="population" defaultValue={planet.population} />
-//               <button type="submit">Save</button>
-//             </form>
-//           ) : (
-//             <>
-//               <h2>{planet.name}</h2>
-//               <p>Diameter: {planet.diameter} km</p>
-//               <p>Climate: {planet.climate}</p>
-//               <p>Terrain: {planet.terrain}</p>
-//               <p>Population: {planet.population}</p>
-//               <button><a onClick={() => showPlanet(planet.url)}>READ
-//               </a></button>
-// <button onClick={() => handleEdit(planet)}>Edit</button>
-// <button onClick={() => handleDelete(planet.url)}>Delete</button>
-// </>
-// )}
-// </div>
-// ))}
-// </div>
-// );
-// }
-
-// export default PlanetList;
-
-
-
-
-
-
-
-
-
-// import React, { useContext, useState} from 'react';
-// import StarWarsContext from './StarWarsContext';
-
-// function PlanetList() {
-
-//   const {planets, setPlanets, showPlanet} = useContext(StarWarsContext);
-//   const [editPlanet, setEditPlanet] = useState(null);
-//   const [searchTerm, setSearchTerm] = useState('');
-
-//   const handleDelete = (url) => {
-//     const newPlanets = planets.filter(p => p.url !== url);
-//     setPlanets(newPlanets);
-//   };
-
-//   const handleEdit = (planet) => {
-//     setEditPlanet(planet);
-//   };
-
-//   const handleSave = (event) => {
-//     event.preventDefault();
-//     const updatedPlanet = {
-//       ...editPlanet,
-//       name: event.target.name.value,
-//       climate: event.target.climate.value,
-//       terrain: event.target.terrain.value
-//     };
-//     const updatedPlanets = planets.map(p => p.url === updatedPlanet.url ? updatedPlanet : p);
-//     setPlanets(updatedPlanets);
-//     setEditPlanet(null);
-//   };
-
-//   const searchPlanets = (term) => {
-//     if (term === '') {
-//       return planets;
-//     } else {
-//       return planets.filter(planet => (
-//         planet.name.toLowerCase().includes(term.toLowerCase()) ||
-//         planet.climate.toLowerCase().includes(term.toLowerCase()) ||
-//         planet.terrain.toLowerCase().includes(term.toLowerCase())
-//       ));
-//     }
-//   }
-
-//   const searchResults = searchPlanets(searchTerm);
-
-//   return (
-//     <div className="PlanetList">
-//       <form onSubmit={(e) => e.preventDefault()}>
-//         <label>
-//           Search:
-//           <input
-//             type="text"
-//             value={searchTerm}
-//             onChange={(e) => setSearchTerm(e.target.value)}
-//           />
-//         </label>
-//       </form>
-
-//       {searchResults.map(planet => (
-//         <div key={planet.url}>
-//           {editPlanet === planet ? (
-//             <form onSubmit={handleSave}>
-//               <input type="text" name="name" defaultValue={planet.name} />
-//               <input type="text" name="diameter" defaultValue={planet.diameter} />
-//               <input type="text" name="climate" defaultValue={planet.climate} />
-//               <input type="text" name="terrain" defaultValue={planet.terrain} />
-//               <input type="text" name="population" defaultValue={planet.population} />
-//               <button type="submit">Save</button>
-//             </form>
-//           ) : (
-//             <>
-//               <h2>{planet.name}</h2>
-//               <p>Diameter: {planet.diameter} km</p>
-//               <p>Climate: {planet.climate}</p>
-//               <p>Terrain: {planet.terrain}</p>
-//               <p>Population: {planet.population}</p>
-//               <button><a onClick={() => showPlanet(planet.url)}>READ MORE</a></button>
-//               <button onClick={() => handleEdit(planet)}>Edit</button>
-//               <button onClick={() => handleDelete(planet.url)}>Delete</button>
-//             </>
-//           )}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default PlanetList;

@@ -1,0 +1,90 @@
+@use 'common' as *;
+
+
+* {
+    box-sizing: border-box;
+    margin-top: 0;
+
+}
+
+// Add a background color to clearly show the breakpoints
+body {
+    background-image: url("https://media.revistagq.com/photos/604b2f499fc97c95e82c1c14/16:9/w_2560%2Cc_limit/2101913.jpg");
+}
+
+.App {
+    // margin: 0 auto;
+    align-items: center;
+    // padding: $sm-space;
+   
+
+    h1 {
+        font-family: 'Press Start 2P', cursive;
+        min-height:5vh;
+        display:flex;
+        // justify-content:center;
+        align-items:center;
+        font-size: xx-large;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    button {
+        width: 100%;
+        color: rgb(255, 255, 255);
+        background-color: black;
+        border-radius: 10px;
+        border-color:  rgb(247, 213, 42);
+        padding: 4px;
+        font-weight: 700;
+    }
+
+    .HeaderButton {
+        width: 20%;
+    }
+
+    button:hover {
+        background-color:  rgb(247, 213, 42);
+        opacity: 0.8;
+        color: black;
+      }
+
+    .header {
+        background-color:#000;
+        padding: 20px 0px 10px 0px;
+        margin: auto;
+        width: 100%;
+
+        div{
+            margin: 0 auto;
+            padding: 10px;
+            width: 80%;
+            display: flex;
+            grid-template-columns: repeat(1, 1fr);
+            justify-content: space-between;
+            
+        }
+    }
+
+    @include tablet {
+        width: 100%;
+        
+    }
+
+    @include laptop {
+        width: 100%;
+        // padding: $lg-space;
+    }
+
+}
+
+.FeaturedProject {
+    margin-bottom: $sm-space;
+
+    @include laptop {
+        margin-bottom: $lg-space;
+    }
+}

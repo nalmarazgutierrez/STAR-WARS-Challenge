@@ -1,0 +1,51 @@
+@use '../common' as *;
+
+
+.AddPlanetForm {
+        width: 55%;
+        // display: grid;
+        // grid-template-columns: 1fr;
+        margin: auto;
+        opacity: 0.8;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        color: black;
+        font-size: x-large;
+        border-radius: 20px;
+        padding: 60px 0px 60px 0px;
+    
+        h3 {
+            font-family: 'Press Start 2P', cursive;
+            color:#000000;
+            font-size: x-large;
+        }
+        
+        
+
+    form {
+        display: grid;
+        margin: 0 auto;
+        padding: 0;
+        width: 60%;
+        grid-template-columns: 1fr;
+        font-size: large;
+        // gap: $sm-space;
+
+        input {
+            width: 100%;
+        }
+
+        
+    }
+    @include tablet {
+        // grid-template-columns: repeat(2, 1fr);
+
+        // .span-2-cols {
+        //     grid-column: 1 / span 2;
+        // }
+    }
+
+    @include laptop {
+        // gap: $lg-space;
+    }
+}

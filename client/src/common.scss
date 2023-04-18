@@ -1,0 +1,21 @@
+// Define breakpoints
+$tablet-bp: 600px;
+$laptop-bp: 800px;
+
+// Define margin & grid gap sizes
+$lg-space: 20px;
+$sm-space: 10px;
+
+// Define handy mixins for media queries
+
+@mixin tablet {
+    @media screen and (min-width: $tablet-bp){
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (min-width: $laptop-bp){
+        @content;
+    }
+}
