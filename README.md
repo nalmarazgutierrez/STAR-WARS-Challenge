@@ -13,3 +13,6 @@
 ### Notes
 
 - If you want to fecth more planets to manage, comment out the current getPlanets() function, and uncomment de following (also called getPlanets). The API has limited requests, so the second getPlanets function can exhaust all the requests. 
+
+https://user-images.githubusercontent.com/113330261/232768846-50da7479-bd39-419a-8bd0-0469b172fb00.mp4
+
