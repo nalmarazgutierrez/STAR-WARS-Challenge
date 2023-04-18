@@ -14,16 +14,19 @@ function AddPlanetForm() {
   const { planets, setPlanets, setFormSubmitted, setShowForm} = useContext(StarWarsContext);
   const [newPlanet, setNewPlanet] = useState(EMPTY_PLANET);
 
+  //Add a new planet to the State
   function addPlanet(e) {
     e.preventDefault();
     setPlanets((prevState) => [...prevState, newPlanet]);
     setFormSubmitted(true);
     setNewPlanet(EMPTY_PLANET);
+    //hide form when a planet is added
     setShowForm(false);
     setFormSubmitted(false);
     
   }
 
+  //Event handler of the form
   function handleChange(event) {
     const { name, value } = event.target;
     setNewPlanet((prevState) => ({

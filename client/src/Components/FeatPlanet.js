@@ -3,9 +3,10 @@ import StarWarsContext from "./StarWarsContext";
 import "./FeatPlanet.scss";
 
 function FeatPlanet() {
-  const {featPlanet, editPlanet, setEditPlanet } = useContext(StarWarsContext);
+  const { featPlanet, editPlanet, setEditPlanet } = useContext(StarWarsContext);
   const [residents, setResidents] = useState([]);
 
+  //Fetch the residents of each planet from de API
   useEffect(() => {
     async function getResidents() {
       try {
@@ -35,19 +36,28 @@ function FeatPlanet() {
 
   return (
     <div key={featPlanet.url} className="FeatPlanet card">
-        <div className="featDiv">
-          <h3>{featPlanet.name}</h3>
-        <p><b>Diameter:</b> {featPlanet.diameter} km</p>
-        <p><b>Climate:</b> {featPlanet.climate}</p>
-        <p><b>Terrain:</b> {featPlanet.terrain}</p>
-        <p><b>Population:</b> {featPlanet.population}</p>
-        </div>
-        <div className="featDiv">
+      <div className="featDiv">
+        <h3>{featPlanet.name}</h3>
+        <p>
+          <b>Diameter:</b> {featPlanet.diameter} km
+        </p>
+        <p>
+          <b>Climate:</b> {featPlanet.climate}
+        </p>
+        <p>
+          <b>Terrain:</b> {featPlanet.terrain}
+        </p>
+        <p>
+          <b>Population:</b> {featPlanet.population}
+        </p>
+      </div>
+
+      <div className="featDiv">
         <h3>Residents:</h3>
         {residents.map((r, index) => (
           <p key={index}>{r}</p>
         ))}
-        </div>
+      </div>
     </div>
   );
 }

@@ -6,8 +6,6 @@
     margin-bottom: 60px;
 
     .Panel {
-        // display: flex;
-        // justify-content: space-between;
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 30px;
@@ -33,14 +31,10 @@
             padding: 0;
             width: 100%;
             margin-bottom: 10px;
-            // gap: $sm-space;
     
             input {
-                // width: 100%;
                 margin-top: 10px;
-            }
-    
-            
+            } 
         }
     }
 
@@ -65,20 +59,14 @@
     grid-auto-rows: 1fr;
     grid-template-columns: repeat(1, 1fr);
     gap: $sm-space;
-    // margin: auto;
     text-align: center;
     }
 
     .PlanetDiv {
         color: white;       
-        // height: auto;
-        // aspect-ratio: 1/1;
-        // object-fit: cover;
-        // grid-auto-rows: 1fr;
         background-color: rgb(0, 0, 0);
         opacity: 0.9;
         border-radius: 20px;
-        // margin: auto;
         padding: 5px;
         margin-top: 0;
     }
@@ -93,10 +81,6 @@
 
     h3 {
         font-family: 'Press Start 2P', cursive;
-        // min-height:5vh;
-        // display:flex;
-        // justify-content:center;
-        // align-items:center;
         color:#fff;
         font-size: x-large;
     }
@@ -108,7 +92,6 @@
     }
 
     @include laptop {
-        // width: 70%;
         .PlanetGrid {
         gap: $lg-space;
         }

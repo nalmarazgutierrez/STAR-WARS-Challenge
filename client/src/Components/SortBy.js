@@ -21,7 +21,7 @@ function SortBy() {
     <div className="SortBy">
       <label htmlFor="sortProperty">Sort by:</label>
       <select className="form-select" name="sortProperty" value={sortProperty} onChange={handleSortChange}>
-        <option value="">None</option>
+        <option value="none">None</option>
         <option value="name">Name</option>
         <option value="diameter">Diameter</option>
         <option value="climate">Climate</option>
