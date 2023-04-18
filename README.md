@@ -1,5 +1,7 @@
 ## Setup
 
+After cloning the repository on your local PC...
+
 ### Dependencies
 
 - Go to project directory (KEEN-CHALLENGE). Run `npm install` in project directory. This will install server-related dependencies such as `express`.
