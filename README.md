@@ -4,7 +4,7 @@ After cloning the repository on your local PC...
 
 ### Dependencies
 
-- Go to project directory (KEEN-CHALLENGE). Run `npm install` in project directory. This will install server-related dependencies such as `express`.
+- Go to project directory (STAR-WARS-Challenge). Run `npm install` in project directory. This will install server-related dependencies such as `express`.
 - `cd client` and run `npm install`. This will install client dependencies (React).
 
 ### Development
